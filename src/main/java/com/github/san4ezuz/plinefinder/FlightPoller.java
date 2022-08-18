@@ -43,6 +43,8 @@ public class FlightPoller {
                 .filter(flight -> flight.getEstArrivalAirport() != null && flight.getEstDepartureAirport() != null)
                 .toStream()
                 .forEach(flight -> flightRepository.save(flight));
+
+        System.out.println(flightRepository.findAll());
     }
 
     private static final String getBasicAuthenticationHeader(String username, String password) {
