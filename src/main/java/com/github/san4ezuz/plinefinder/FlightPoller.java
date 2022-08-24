@@ -30,7 +30,6 @@ public class FlightPoller {
 
     @Scheduled(fixedRate = 300000)
     private void pollFlights() {
-        flightRepository.deleteAll();
         client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/flights/all")
@@ -41,8 +40,7 @@ public class FlightPoller {
                 .retrieve()
                 .bodyToFlux(Flight.class)
                 .filter(flight -> flight.getEstArrivalAirport() != null && flight.getEstDepartureAirport() != null)
-                .toStream()
-                .forEach(flight -> flightRepository.save(flight));
+                .flatMap(flightRepository::save);
 
         System.out.println(flightRepository.findAll());
     }

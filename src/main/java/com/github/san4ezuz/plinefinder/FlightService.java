@@ -1,6 +1,7 @@
 package com.github.san4ezuz.plinefinder;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 @Service
 public class FlightService {
@@ -11,7 +12,7 @@ public class FlightService {
         this.flightRepository = flightRepository;
     }
 
-    public Iterable<Flight> getAllFlights() {
+    public Flux<Flight> getAllFlights() {
         return flightRepository.findAll();
     }
 }
