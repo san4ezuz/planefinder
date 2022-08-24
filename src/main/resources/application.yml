@@ -4,5 +4,5 @@ server:
     server:
       port: 7635
 opensky:
-  name: sanhes95
-  password: fktrcfylh
+  name:
+  password:
